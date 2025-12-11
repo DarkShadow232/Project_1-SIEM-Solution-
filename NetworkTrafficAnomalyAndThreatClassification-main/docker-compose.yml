@@ -1,0 +1,76 @@
+# =============================================================================
+# Network Traffic Anomaly & Threat Classification
+# Docker Compose Configuration
+# =============================================================================
+
+services:
+  # =========================================================================
+  # SIEM Dashboard - Main Web Application
+  # =========================================================================
+  siem-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: siem-dashboard
+    image: network-threat-classifier:latest
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - FLASK_DEBUG=0
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount data directory for persistent storage
+      - ./project 1/siem_integration:/app/siem_integration:ro
+      - ./project 1/Models:/app/Models:ro
+      - siem-logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - siem-network
+    labels:
+      - "com.siem.description=SIEM Security Dashboard"
+      - "com.siem.version=1.0.0"
+
+  # =========================================================================
+  # Development Mode - With Hot Reload
+  # =========================================================================
+  siem-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: siem-dev
+    ports:
+      - "5001:5000"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=1
+    volumes:
+      # Mount entire project for development
+      - ./project 1:/app
+    command: ["python", "dashboard/app.py"]
+    profiles:
+      - dev
+    networks:
+      - siem-network
+
+# =============================================================================
+# Networks
+# =============================================================================
+networks:
+  siem-network:
+    driver: bridge
+    name: siem-network
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  siem-logs:
+    name: siem-logs
+

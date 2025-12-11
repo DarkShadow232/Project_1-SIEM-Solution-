@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+
+{% block title %}Outliers - SIEM Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="mb-0">
+            <i class="fas fa-chart-scatter me-2"></i>Outlier Detection Results
+        </h2>
+        <p class="text-muted">Analysis of network traffic outliers using multiple detection methods</p>
+    </div>
+</div>
+
+<!-- Summary Stats -->
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-info">{{ outliers|length }}</h3>
+                <p class="mb-0 text-muted">Total Outliers</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-primary">{{ outliers['IQR_Outlier'].sum() if outliers is not none and not outliers.empty else 0 }}</h3>
+                <p class="mb-0 text-muted">IQR Method</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-warning">{{ outliers['ZScore_Outlier'].sum() if outliers is not none and not outliers.empty else 0 }}</h3>
+                <p class="mb-0 text-muted">Z-Score Method</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-success">{{ outliers['IsolationForest_Outlier'].sum() if outliers is not none and not outliers.empty else 0 }}</h3>
+                <p class="mb-0 text-muted">Isolation Forest</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 3D Scatter Plot -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-cube me-2"></i>3D Scatter: Processes vs Handles vs DLLs
+            </div>
+            <div class="card-body">
+                <div id="scatter3d"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Detection Method Comparison -->
+<div class="row g-4 mb-4">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-bar me-2"></i>Detection Method Distribution
+            </div>
+            <div class="card-body">
+                <div id="methodBarChart"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-venn-diagram me-2"></i>Multi-Method Detection
+            </div>
+            <div class="card-body">
+                <div id="multiMethodChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Box Plots -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-box me-2"></i>Feature Distribution Comparison
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="processesBoxPlot"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="handlesBoxPlot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Feature Correlation Heatmap -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-th me-2"></i>Feature Correlation Heatmap
+            </div>
+            <div class="card-body">
+                <div id="correlationHeatmap"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Outliers Table -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-table me-2"></i>Outliers Data Table</span>
+                <button class="btn btn-sm btn-success" onclick="downloadOutliers()">
+                    <i class="fas fa-download me-1"></i>Download CSV
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="outliersTable" class="table table-dark table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>Filename</th>
+                                <th>IQR</th>
+                                <th>Z-Score</th>
+                                <th>Iso Forest</th>
+                                <th>Malware Inj.</th>
+                                <th>Processes</th>
+                                <th>Handles</th>
+                                <th>DLLs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if outliers is not none and not outliers.empty %}
+                                {% for idx, row in outliers.iterrows() %}
+                                <tr>
+                                    <td class="text-truncate" style="max-width: 250px;" title="{{ row.Filename }}">
+                                        {{ row.Filename }}
+                                    </td>
+                                    <td>
+                                        {% if row.IQR_Outlier == 1 %}
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        {% else %}
+                                        <i class="fas fa-times-circle text-muted"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if row.ZScore_Outlier == 1 %}
+                                        <i class="fas fa-check-circle text-warning"></i>
+                                        {% else %}
+                                        <i class="fas fa-times-circle text-muted"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if row.IsolationForest_Outlier == 1 %}
+                                        <i class="fas fa-check-circle text-info"></i>
+                                        {% else %}
+                                        <i class="fas fa-times-circle text-muted"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ row['malfind.ninjections'] }}</td>
+                                    <td>{{ row['pslist.nproc'] }}</td>
+                                    <td>{{ row['handles.nhandles'] }}</td>
+                                    <td>{{ row['dlllist.ndlls'] }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    console.log('Loading outliers page...');
+    const outliersData = {{ outliers_json | safe }};
+    console.log('Outliers data loaded:', outliersData ? outliersData.length : 0, 'records');
+    
+    // 3D Scatter Plot
+    const scatter3dData = [{
+        x: outliersData.map(d => d['pslist.nproc']),
+        y: outliersData.map(d => d['handles.nhandles']),
+        z: outliersData.map(d => d['dlllist.ndlls']),
+        mode: 'markers',
+        marker: {
+            size: 5,
+            color: outliersData.map(d => d.IQR_Outlier + d.ZScore_Outlier + d.IsolationForest_Outlier),
+            colorscale: 'Viridis',
+            showscale: true,
+            colorbar: {title: 'Detection<br>Count'}
+        },
+        type: 'scatter3d',
+        text: outliersData.map(d => d.Filename),
+        hovertemplate: '<b>%{text}</b><br>Processes: %{x}<br>Handles: %{y}<br>DLLs: %{z}<extra></extra>'
+    }];
+    
+    const scatter3dLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        scene: {
+            xaxis: {title: 'Processes', gridcolor: '#3a3a3a', backgroundcolor: 'rgba(0,0,0,0)'},
+            yaxis: {title: 'Handles', gridcolor: '#3a3a3a', backgroundcolor: 'rgba(0,0,0,0)'},
+            zaxis: {title: 'DLLs', gridcolor: '#3a3a3a', backgroundcolor: 'rgba(0,0,0,0)'}
+        },
+        height: 500
+    };
+    
+    Plotly.newPlot('scatter3d', scatter3dData, scatter3dLayout, {responsive: true});
+    
+    // Detection Method Bar Chart
+    const iqrCount = outliersData.reduce((sum, d) => sum + d.IQR_Outlier, 0);
+    const zscoreCount = outliersData.reduce((sum, d) => sum + d.ZScore_Outlier, 0);
+    const isoCount = outliersData.reduce((sum, d) => sum + d.IsolationForest_Outlier, 0);
+    
+    const methodBarData = [{
+        x: ['IQR', 'Z-Score', 'Isolation Forest'],
+        y: [iqrCount, zscoreCount, isoCount],
+        type: 'bar',
+        marker: {color: ['#00bfa5', '#ff6f00', '#9c27b0']}
+    }];
+    
+    const methodBarLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        xaxis: {gridcolor: '#3a3a3a'},
+        yaxis: {title: 'Count', gridcolor: '#3a3a3a'},
+        height: 300
+    };
+    
+    Plotly.newPlot('methodBarChart', methodBarData, methodBarLayout, {responsive: true});
+    
+    // Multi-Method Detection
+    const methodCounts = {
+        'Single Method': 0,
+        'Two Methods': 0,
+        'All Three Methods': 0
+    };
+    
+    outliersData.forEach(d => {
+        const count = d.IQR_Outlier + d.ZScore_Outlier + d.IsolationForest_Outlier;
+        if (count === 1) methodCounts['Single Method']++;
+        else if (count === 2) methodCounts['Two Methods']++;
+        else if (count === 3) methodCounts['All Three Methods']++;
+    });
+    
+    const multiMethodData = [{
+        values: Object.values(methodCounts),
+        labels: Object.keys(methodCounts),
+        type: 'pie',
+        marker: {colors: ['#ffc107', '#ff6f00', '#dc3545']},
+        textfont: {color: '#000'}
+    }];
+    
+    const multiMethodLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        height: 300
+    };
+    
+    Plotly.newPlot('multiMethodChart', multiMethodData, multiMethodLayout, {responsive: true});
+    
+    // Box Plots
+    const processesBoxData = [
+        {
+            y: outliersData.filter(d => d.IQR_Outlier === 1).map(d => d['pslist.nproc']),
+            name: 'IQR',
+            type: 'box',
+            marker: {color: '#00bfa5'}
+        },
+        {
+            y: outliersData.filter(d => d.ZScore_Outlier === 1).map(d => d['pslist.nproc']),
+            name: 'Z-Score',
+            type: 'box',
+            marker: {color: '#ff6f00'}
+        },
+        {
+            y: outliersData.filter(d => d.IsolationForest_Outlier === 1).map(d => d['pslist.nproc']),
+            name: 'Isolation Forest',
+            type: 'box',
+            marker: {color: '#9c27b0'}
+        }
+    ];
+    
+    const processesBoxLayout = {
+        title: 'Processes Distribution',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        yaxis: {title: 'Number of Processes', gridcolor: '#3a3a3a'},
+        height: 300
+    };
+    
+    Plotly.newPlot('processesBoxPlot', processesBoxData, processesBoxLayout, {responsive: true});
+    
+    const handlesBoxData = [
+        {
+            y: outliersData.filter(d => d.IQR_Outlier === 1).map(d => d['handles.nhandles']),
+            name: 'IQR',
+            type: 'box',
+            marker: {color: '#00bfa5'}
+        },
+        {
+            y: outliersData.filter(d => d.ZScore_Outlier === 1).map(d => d['handles.nhandles']),
+            name: 'Z-Score',
+            type: 'box',
+            marker: {color: '#ff6f00'}
+        },
+        {
+            y: outliersData.filter(d => d.IsolationForest_Outlier === 1).map(d => d['handles.nhandles']),
+            name: 'Isolation Forest',
+            type: 'box',
+            marker: {color: '#9c27b0'}
+        }
+    ];
+    
+    const handlesBoxLayout = {
+        title: 'Handles Distribution',
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        yaxis: {title: 'Number of Handles', gridcolor: '#3a3a3a'},
+        height: 300
+    };
+    
+    Plotly.newPlot('handlesBoxPlot', handlesBoxData, handlesBoxLayout, {responsive: true});
+    
+    // Correlation Heatmap
+    const features = ['pslist.nproc', 'handles.nhandles', 'dlllist.ndlls', 'malfind.ninjections'];
+    const corrMatrix = calculateCorrelation(outliersData, features);
+    
+    const heatmapData = [{
+        z: corrMatrix,
+        x: features.map(f => f.split('.')[1]),
+        y: features.map(f => f.split('.')[1]),
+        type: 'heatmap',
+        colorscale: 'RdBu',
+        zmid: 0,
+        text: corrMatrix.map(row => row.map(val => val.toFixed(2))),
+        texttemplate: '%{text}',
+        textfont: {color: '#fff'}
+    }];
+    
+    const heatmapLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        height: 400
+    };
+    
+    Plotly.newPlot('correlationHeatmap', heatmapData, heatmapLayout, {responsive: true});
+    
+    // Helper function for correlation
+    function calculateCorrelation(data, features) {
+        const n = features.length;
+        const matrix = [];
+        
+        for (let i = 0; i < n; i++) {
+            const row = [];
+            for (let j = 0; j < n; j++) {
+                if (i === j) {
+                    row.push(1);
+                } else {
+                    const vals1 = data.map(d => d[features[i]]);
+                    const vals2 = data.map(d => d[features[j]]);
+                    row.push(pearsonCorrelation(vals1, vals2));
+                }
+            }
+            matrix.push(row);
+        }
+        return matrix;
+    }
+    
+    function pearsonCorrelation(x, y) {
+        const n = x.length;
+        const sum_x = x.reduce((a, b) => a + b, 0);
+        const sum_y = y.reduce((a, b) => a + b, 0);
+        const sum_xy = x.reduce((sum, xi, i) => sum + xi * y[i], 0);
+        const sum_x2 = x.reduce((sum, xi) => sum + xi * xi, 0);
+        const sum_y2 = y.reduce((sum, yi) => sum + yi * yi, 0);
+        
+        const num = n * sum_xy - sum_x * sum_y;
+        const den = Math.sqrt((n * sum_x2 - sum_x * sum_x) * (n * sum_y2 - sum_y * sum_y));
+        
+        return den === 0 ? 0 : num / den;
+    }
+    
+    // Initialize DataTable
+    $(document).ready(function() {
+        $('#outliersTable').DataTable({
+            pageLength: 25,
+            order: [[4, 'desc']], // Sort by malware injections
+            responsive: true
+        });
+    });
+    
+    // Download outliers
+    function downloadOutliers() {
+        window.location.href = '/api/export/outliers';
+    }
+</script>
+{% endblock %}
+

@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+
+{% block title %}Real-Time Monitor - SIEM Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="mb-0">
+            <i class="fas fa-desktop me-2"></i>Real-Time Security Monitor
+        </h2>
+        <p class="text-muted">Live feed of security alerts and system metrics</p>
+    </div>
+</div>
+
+<!-- System Status Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-header bg-success">
+                <i class="fas fa-heartbeat me-2"></i>System Status
+            </div>
+            <div class="card-body">
+                <h2 class="text-success mb-0">
+                    <i class="fas fa-check-circle"></i> ONLINE
+                </h2>
+                <p class="text-muted mb-0">All systems operational</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-header bg-info">
+                <i class="fas fa-clock me-2"></i>Active Monitoring
+            </div>
+            <div class="card-body">
+                <h2 class="text-info mb-0" id="uptime">00:00:00</h2>
+                <p class="text-muted mb-0">Session uptime</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-header bg-warning">
+                <i class="fas fa-bell me-2"></i>Recent Alerts
+            </div>
+            <div class="card-body">
+                <h2 class="text-warning mb-0" id="recentAlertsCount">0</h2>
+                <p class="text-muted mb-0">Last 10 minutes</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Live Alert Feed -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-stream me-2"></i>Live Alert Feed</span>
+                <div>
+                    <span class="badge bg-success">
+                        <i class="fas fa-circle fa-xs me-1" id="liveIndicator"></i>
+                        Streaming
+                    </span>
+                    <button class="btn btn-sm btn-outline-light ms-2" onclick="clearFeed()">
+                        <i class="fas fa-trash me-1"></i>Clear
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="live-feed" id="liveFeed">
+                    <div class="text-center text-muted py-4">
+                        <i class="fas fa-sync fa-spin fa-2x mb-3"></i>
+                        <p>Waiting for new alerts...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Real-Time Metrics Charts -->
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-line me-2"></i>Alert Rate (Per Minute)
+            </div>
+            <div class="card-body">
+                <div id="alertRateChart"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-tachometer-alt me-2"></i>Severity Gauge
+            </div>
+            <div class="card-body">
+                <div id="severityGauge"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    let startTime = Date.now();
+    let alertBuffer = [];
+    let alertRateData = {
+        x: [],
+        y: []
+    };
+    
+    // Update uptime
+    function updateUptime() {
+        const elapsed = Date.now() - startTime;
+        const hours = Math.floor(elapsed / 3600000);
+        const minutes = Math.floor((elapsed % 3600000) / 60000);
+        const seconds = Math.floor((elapsed % 60000) / 1000);
+        document.getElementById('uptime').textContent = 
+            `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+    setInterval(updateUptime, 1000);
+    
+    // Initialize Alert Rate Chart
+    const alertRateTrace = {
+        x: [],
+        y: [],
+        type: 'scatter',
+        mode: 'lines',
+        line: {color: '#00bfa5', width: 2},
+        fill: 'tozeroy',
+        fillcolor: 'rgba(0, 191, 165, 0.2)'
+    };
+    
+    const alertRateLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        xaxis: {
+            title: 'Time',
+            gridcolor: '#3a3a3a',
+            range: [0, 20]
+        },
+        yaxis: {
+            title: 'Alerts/min',
+            gridcolor: '#3a3a3a',
+            range: [0, 10]
+        },
+        margin: {l: 50, r: 20, t: 20, b: 50},
+        height: 250
+    };
+    
+    Plotly.newPlot('alertRateChart', [alertRateTrace], alertRateLayout, {responsive: true});
+    
+    // Initialize Severity Gauge
+    const severityGaugeData = [{
+        type: "indicator",
+        mode: "gauge+number",
+        value: 0,
+        title: {text: "High Severity %", font: {color: '#e0e0e0'}},
+        gauge: {
+            axis: {range: [null, 100], tickcolor: '#e0e0e0'},
+            bar: {color: "#dc3545"},
+            bgcolor: "#2d2d2d",
+            borderwidth: 2,
+            bordercolor: "#3a3a3a",
+            steps: [
+                {range: [0, 33], color: "#28a745"},
+                {range: [33, 66], color: "#ffc107"},
+                {range: [66, 100], color: "#dc3545"}
+            ],
+            threshold: {
+                line: {color: "white", width: 4},
+                thickness: 0.75,
+                value: 70
+            }
+        }
+    }];
+    
+    const severityGaugeLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        height: 250,
+        margin: {l: 20, r: 20, t: 20, b: 20}
+    };
+    
+    Plotly.newPlot('severityGauge', severityGaugeData, severityGaugeLayout, {responsive: true});
+    
+    // Fetch recent alerts and update feed
+    function fetchRecentAlerts() {
+        fetch('/api/alerts?limit=10')
+            .then(response => response.json())
+            .then(alerts => {
+                updateLiveFeed(alerts);
+                updateMetrics(alerts);
+            })
+            .catch(error => console.error('Error fetching alerts:', error));
+    }
+    
+    function updateLiveFeed(alerts) {
+        const feed = document.getElementById('liveFeed');
+        
+        // Clear placeholder if present
+        if (feed.querySelector('.text-center')) {
+            feed.innerHTML = '';
+        }
+        
+        // Add new alerts to the top
+        alerts.slice(0, 5).forEach(alert => {
+            if (!document.querySelector(`[data-alert-id="${alert.alert_id}"]`)) {
+                const alertItem = document.createElement('div');
+                alertItem.className = `live-feed-item severity-${alert.severity}`;
+                alertItem.setAttribute('data-alert-id', alert.alert_id);
+                alertItem.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="badge severity-${alert.severity} me-2">${alert.severity.toUpperCase()}</span>
+                                <span class="text-muted small">${new Date(alert.timestamp).toLocaleTimeString()}</span>
+                            </div>
+                            <h6 class="mb-1">${alert.filename}</h6>
+                            <p class="mb-1 small">Anomaly Score: <strong>${alert.anomaly_score.toFixed(2)}</strong></p>
+                            <p class="mb-0 small text-muted">${alert.source}</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-light" onclick="viewAlertDetails('${alert.alert_id}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                `;
+                feed.insertBefore(alertItem, feed.firstChild);
+                
+                // Keep only last 20 items
+                while (feed.children.length > 20) {
+                    feed.removeChild(feed.lastChild);
+                }
+            }
+        });
+        
+        // Update recent alerts count (last 10 minutes)
+        const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+        const recentCount = alerts.filter(a => 
+            new Date(a.timestamp) > tenMinutesAgo
+        ).length;
+        document.getElementById('recentAlertsCount').textContent = recentCount;
+    }
+    
+    function updateMetrics(alerts) {
+        // Update alert rate chart
+        const now = Date.now();
+        const oneMinuteAgo = now - 60000;
+        const recentAlerts = alerts.filter(a => 
+            new Date(a.timestamp).getTime() > oneMinuteAgo
+        );
+        
+        alertRateData.x.push(new Date().toLocaleTimeString());
+        alertRateData.y.push(recentAlerts.length);
+        
+        // Keep only last 20 data points
+        if (alertRateData.x.length > 20) {
+            alertRateData.x.shift();
+            alertRateData.y.shift();
+        }
+        
+        Plotly.update('alertRateChart', {
+            x: [alertRateData.x],
+            y: [alertRateData.y]
+        });
+        
+        // Update severity gauge
+        const highSeverityCount = alerts.filter(a => a.severity === 'high').length;
+        const highSeverityPercent = alerts.length > 0 ? 
+            (highSeverityCount / alerts.length) * 100 : 0;
+        
+        Plotly.update('severityGauge', {value: [highSeverityPercent]});
+    }
+    
+    function clearFeed() {
+        const feed = document.getElementById('liveFeed');
+        feed.innerHTML = `
+            <div class="text-center text-muted py-4">
+                <i class="fas fa-sync fa-spin fa-2x mb-3"></i>
+                <p>Waiting for new alerts...</p>
+            </div>
+        `;
+    }
+    
+    function viewAlertDetails(alertId) {
+        window.location.href = '/alerts?search=' + alertId;
+    }
+    
+    // Auto-refresh every 5 seconds
+    setInterval(fetchRecentAlerts, 5000);
+    
+    // Initial fetch
+    fetchRecentAlerts();
+    
+    // Pulse animation for live indicator
+    setInterval(() => {
+        const indicator = document.getElementById('liveIndicator');
+        indicator.style.opacity = indicator.style.opacity === '0.3' ? '1' : '0.3';
+    }, 1000);
+</script>
+{% endblock %}
+

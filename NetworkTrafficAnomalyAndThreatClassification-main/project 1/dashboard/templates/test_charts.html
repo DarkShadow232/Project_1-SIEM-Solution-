@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Test</title>
+    <script src="{{ url_for('static', filename='js/plotly.min.js') }}"></script>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .chart-box {
+            background: #2d2d2d;
+            border: 1px solid #3a3a3a;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        h2 { color: #00bfa5; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .success { background: #28a745; color: white; }
+        .error { background: #dc3545; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Chart Rendering Test</h1>
+    <div id="status" class="status">Testing...</div>
+    
+    <div class="chart-box">
+        <h2>Test Chart 1: Simple Bar Chart</h2>
+        <div id="test-chart-1"></div>
+    </div>
+    
+    <div class="chart-box">
+        <h2>Test Chart 2: Line Chart</h2>
+        <div id="test-chart-2"></div>
+    </div>
+    
+    <div class="chart-box">
+        <h2>Test Chart 3: Pie Chart</h2>
+        <div id="test-chart-3"></div>
+    </div>
+    
+    <script>
+        try {
+            // Test 1: Bar Chart
+            const barData = [{
+                x: ['A', 'B', 'C'],
+                y: [10, 20, 15],
+                type: 'bar',
+                marker: {color: '#00bfa5'}
+            }];
+            
+            const barLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {color: '#e0e0e0'},
+                title: 'Bar Chart Test'
+            };
+            
+            Plotly.newPlot('test-chart-1', barData, barLayout);
+            
+            // Test 2: Line Chart
+            const lineData = [{
+                x: [1, 2, 3, 4, 5],
+                y: [1, 4, 2, 5, 3],
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#ff6f00'}
+            }];
+            
+            const lineLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                font: {color: '#e0e0e0'},
+                title: 'Line Chart Test',
+                xaxis: {gridcolor: '#3a3a3a'},
+                yaxis: {gridcolor: '#3a3a3a'}
+            };
+            
+            Plotly.newPlot('test-chart-2', lineData, lineLayout);
+            
+            // Test 3: Pie Chart
+            const pieData = [{
+                values: [30, 40, 30],
+                labels: ['X', 'Y', 'Z'],
+                type: 'pie',
+                marker: {colors: ['#dc3545', '#ffc107', '#28a745']}
+            }];
+            
+            const pieLayout = {
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                font: {color: '#e0e0e0'},
+                title: 'Pie Chart Test'
+            };
+            
+            Plotly.newPlot('test-chart-3', pieData, pieLayout);
+            
+            // Success
+            document.getElementById('status').className = 'status success';
+            document.getElementById('status').textContent = '✓ SUCCESS: All charts rendered correctly! Plotly.js is working.';
+            
+        } catch (error) {
+            document.getElementById('status').className = 'status error';
+            document.getElementById('status').textContent = '✗ ERROR: ' + error.message;
+            console.error('Chart error:', error);
+        }
+    </script>
+</body>
+</html>
+

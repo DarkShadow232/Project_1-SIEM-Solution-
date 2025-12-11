@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+{% block title %}Overview - SIEM Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="mb-0">
+            <i class="fas fa-tachometer-alt me-2"></i>Security Overview Dashboard
+        </h2>
+        <p class="text-muted">Real-time monitoring and anomaly detection</p>
+    </div>
+</div>
+
+<!-- KPI Cards -->
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="card kpi-card border-danger">
+            <div class="kpi-icon text-danger">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="kpi-value text-danger" id="kpi-total-alerts">{{ stats.total_alerts }}</div>
+            <div class="kpi-label">Total Alerts</div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card kpi-card border-danger">
+            <div class="kpi-icon text-danger">
+                <i class="fas fa-fire"></i>
+            </div>
+            <div class="kpi-value text-danger" id="kpi-high-severity">{{ stats.high_severity }}</div>
+            <div class="kpi-label">High Severity</div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card kpi-card border-warning">
+            <div class="kpi-icon text-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="kpi-value text-warning" id="kpi-medium-severity">{{ stats.medium_severity }}</div>
+            <div class="kpi-label">Medium Severity</div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card kpi-card border-info">
+            <div class="kpi-icon text-info">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="kpi-value text-info" id="kpi-outliers">{{ stats.total_outliers }}</div>
+            <div class="kpi-label">Outliers Detected</div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Row 1 -->
+<div class="row g-4 mb-4">
+    <!-- Alerts Timeline -->
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-line me-2"></i>Alerts Timeline (Last 24 Hours)
+            </div>
+            <div class="card-body">
+                <div id="alertsTimelineChart"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Severity Distribution -->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-pie me-2"></i>Severity Distribution
+            </div>
+            <div class="card-body">
+                <div id="severityPieChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Row 2 -->
+<div class="row g-4 mb-4">
+    <!-- Alert Status -->
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-tasks me-2"></i>Alert Status Breakdown
+            </div>
+            <div class="card-body">
+                <div id="statusChart"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Detection Methods -->
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-search me-2"></i>Detection Method Comparison
+            </div>
+            <div class="card-body">
+                <div id="detectionMethodChart"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top Anomalous Files -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="fas fa-file-code me-2"></i>Top 10 Anomalous Files</span>
+                <a href="/outliers" class="btn btn-sm btn-outline-light">
+                    View All <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Filename</th>
+                                <th>Detection Score</th>
+                                <th>Malware Injections</th>
+                                <th>Processes</th>
+                                <th>Handles</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for file in stats.top_files %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td class="text-truncate" style="max-width: 300px;" title="{{ file.Filename }}">
+                                    {{ file.Filename }}
+                                </td>
+                                <td>
+                                    <span class="badge {% if file.combined_score >= 3 %}bg-danger{% elif file.combined_score >= 2 %}bg-warning{% else %}bg-info{% endif %}">
+                                        {{ file.combined_score }}
+                                    </span>
+                                </td>
+                                <td>{{ file['malfind.ninjections'] }}</td>
+                                <td>{{ file['pslist.nproc'] }}</td>
+                                <td>{{ file['handles.nhandles'] }}</td>
+                                <td>
+                                    <a href="/search?q={{ file.Filename }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="7" class="text-center text-muted">No anomalous files detected</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    try {
+        // Data from Flask
+        console.log('Loading dashboard data...');
+        const statsData = {{ stats | tojson | safe }};
+        console.log('Stats data:', statsData);
+        
+        if (!statsData) {
+            throw new Error('No stats data received');
+        }
+        
+        // Check if Plotly is loaded
+        if (typeof Plotly === 'undefined') {
+            throw new Error('Plotly.js is not loaded');
+        }
+        console.log('Plotly.js loaded successfully');
+        
+        // Alerts Timeline Chart
+        console.log('Creating timeline chart...');
+        const timelineData = [{
+        x: statsData.alert_timeline.hours,
+        y: statsData.alert_timeline.counts,
+        type: 'scatter',
+        mode: 'lines+markers',
+        line: {color: '#00bfa5', width: 3},
+        marker: {size: 8},
+        fill: 'tozeroy',
+        fillcolor: 'rgba(0, 191, 165, 0.2)'
+    }];
+    
+    const timelineLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        xaxis: {
+            title: 'Time (Hours)',
+            gridcolor: '#3a3a3a'
+        },
+        yaxis: {
+            title: 'Alert Count',
+            gridcolor: '#3a3a3a'
+        },
+        margin: {l: 50, r: 20, t: 20, b: 50},
+        height: 300
+    };
+    
+    Plotly.newPlot('alertsTimelineChart', timelineData, timelineLayout, {responsive: true});
+    
+    // Severity Pie Chart
+    const severityData = [{
+        values: [statsData.high_severity, statsData.medium_severity, statsData.low_severity],
+        labels: ['High', 'Medium', 'Low'],
+        type: 'pie',
+        marker: {
+            colors: ['#dc3545', '#fd7e14', '#ffc107']
+        },
+        textfont: {color: '#000'},
+        hole: 0.4
+    }];
+    
+    const severityLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        margin: {l: 20, r: 20, t: 20, b: 20},
+        height: 300,
+        showlegend: true,
+        legend: {
+            orientation: 'v',
+            x: 1,
+            y: 0.5
+        }
+    };
+    
+    Plotly.newPlot('severityPieChart', severityData, severityLayout, {responsive: true});
+    
+    // Status Bar Chart
+    const statusData = [{
+        x: ['New', 'Investigating', 'Resolved'],
+        y: [statsData.new_alerts, statsData.investigating, statsData.resolved],
+        type: 'bar',
+        marker: {
+            color: ['#dc3545', '#ffc107', '#28a745']
+        }
+    }];
+    
+    const statusLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        xaxis: {gridcolor: '#3a3a3a'},
+        yaxis: {
+            title: 'Count',
+            gridcolor: '#3a3a3a'
+        },
+        margin: {l: 50, r: 20, t: 20, b: 50},
+        height: 300
+    };
+    
+    Plotly.newPlot('statusChart', statusData, statusLayout, {responsive: true});
+    
+    // Detection Method Chart
+    const detectionData = [{
+        x: ['IQR', 'Z-Score', 'Isolation Forest'],
+        y: [statsData.iqr_outliers, statsData.zscore_outliers, statsData.iso_outliers],
+        type: 'bar',
+        marker: {
+            color: ['#00bfa5', '#ff6f00', '#9c27b0']
+        }
+    }];
+    
+    const detectionLayout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        font: {color: '#e0e0e0'},
+        xaxis: {gridcolor: '#3a3a3a'},
+        yaxis: {
+            title: 'Outliers Detected',
+            gridcolor: '#3a3a3a'
+        },
+        margin: {l: 50, r: 20, t: 20, b: 50},
+        height: 300
+    };
+    
+    Plotly.newPlot('detectionMethodChart', detectionData, detectionLayout, {responsive: true});
+        
+        console.log('All charts created successfully!');
+        
+    } catch (error) {
+        console.error('Error creating charts:', error);
+        console.error('Error stack:', error.stack);
+        alert('Error loading charts: ' + error.message + '\nCheck browser console (F12) for details.');
+    }
+    
+    // Auto-refresh disabled for debugging
+    // Uncomment after charts are working
+    /*
+    setInterval(function() {
+        location.reload();
+    }, 10000);
+    */
+</script>
+{% endblock %}
+

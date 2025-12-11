@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+
+{% block title %}Alerts - SIEM Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="mb-0">
+            <i class="fas fa-exclamation-triangle me-2"></i>Security Alerts
+        </h2>
+        <p class="text-muted">View and manage security alerts from anomaly detection</p>
+    </div>
+</div>
+
+<!-- Filter Controls -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-filter me-2"></i>Filters
+            </div>
+            <div class="card-body">
+                <form id="filterForm" class="row g-3">
+                    <div class="col-md-3">
+                        <label for="severityFilter" class="form-label">Severity</label>
+                        <select class="form-select" id="severityFilter" name="severity">
+                            <option value="">All</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="statusFilter" class="form-label">Status</label>
+                        <select class="form-select" id="statusFilter" name="status">
+                            <option value="">All</option>
+                            <option value="new">New</option>
+                            <option value="investigating">Investigating</option>
+                            <option value="resolved">Resolved</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="timeRangeFilter" class="form-label">Time Range</label>
+                        <select class="form-select" id="timeRangeFilter" name="time_range">
+                            <option value="">All Time</option>
+                            <option value="1">Last Hour</option>
+                            <option value="6">Last 6 Hours</option>
+                            <option value="24">Last 24 Hours</option>
+                            <option value="168">Last Week</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="searchInput" class="form-label">Search</label>
+                        <input type="text" class="form-control" id="searchInput" name="search" placeholder="Search...">
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary" onclick="applyFilters()">
+                            <i class="fas fa-search me-1"></i>Apply Filters
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="resetFilters()">
+                            <i class="fas fa-undo me-1"></i>Reset
+                        </button>
+                        <button type="button" class="btn btn-success" onclick="exportAlerts()">
+                            <i class="fas fa-download me-1"></i>Export to CSV
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alerts Table -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-table me-2"></i>Alerts List ({{ alerts|length }} total)
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="alertsTable" class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Alert ID</th>
+                                <th>Timestamp</th>
+                                <th>Severity</th>
+                                <th>Status</th>
+                                <th>Filename</th>
+                                <th>Anomaly Score</th>
+                                <th>Source</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for alert in alerts %}
+                            <tr>
+                                <td>{{ alert.alert_id }}</td>
+                                <td>{{ alert.timestamp.split('T')[0] }}<br>
+                                    <small class="text-muted">{{ alert.timestamp.split('T')[1][:8] }}</small>
+                                </td>
+                                <td>
+                                    <span class="badge severity-{{ alert.severity }}">
+                                        {{ alert.severity|upper }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge 
+                                        {% if alert.status == 'new' %}bg-danger
+                                        {% elif alert.status == 'investigating' %}bg-warning
+                                        {% else %}bg-success{% endif %}">
+                                        {{ alert.status|capitalize }}
+                                    </span>
+                                </td>
+                                <td class="text-truncate" style="max-width: 200px;" title="{{ alert.filename }}">
+                                    {{ alert.filename }}
+                                </td>
+                                <td>
+                                    <span class="badge bg-info">{{ "%.2f"|format(alert.anomaly_score) }}</span>
+                                </td>
+                                <td><small>{{ alert.source }}</small></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary" 
+                                            onclick="viewAlertDetails('{{ alert.alert_id }}')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alert Details Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-info-circle me-2"></i>Alert Details
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="alertModalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Initialize DataTable
+    $(document).ready(function() {
+        $('#alertsTable').DataTable({
+            order: [[1, 'desc']], // Sort by timestamp
+            pageLength: 25,
+            responsive: true
+        });
+    });
+    
+    // Apply filters
+    function applyFilters() {
+        const form = document.getElementById('filterForm');
+        const formData = new FormData(form);
+        const params = new URLSearchParams(formData);
+        window.location.href = '/alerts?' + params.toString();
+    }
+    
+    // Reset filters
+    function resetFilters() {
+        window.location.href = '/alerts';
+    }
+    
+    // Export to CSV
+    function exportAlerts() {
+        const params = new URLSearchParams(window.location.search);
+        window.location.href = '/api/export/alerts?' + params.toString();
+    }
+    
+    // View alert details
+    function viewAlertDetails(alertId) {
+        fetch('/api/alert/' + alertId)
+            .then(response => response.json())
+            .then(alert => {
+                const modalBody = document.getElementById('alertModalBody');
+                modalBody.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-tag me-2"></i>Basic Information</h6>
+                            <table class="table table-sm table-dark">
+                                <tr><th>Alert ID:</th><td>${alert.alert_id}</td></tr>
+                                <tr><th>Timestamp:</th><td>${alert.timestamp}</td></tr>
+                                <tr>
+                                    <th>Severity:</th>
+                                    <td><span class="badge severity-${alert.severity}">${alert.severity.toUpperCase()}</span></td>
+                                </tr>
+                                <tr><th>Status:</th><td>${alert.status}</td></tr>
+                                <tr><th>Source:</th><td>${alert.source}</td></tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-chart-line me-2"></i>Scores</h6>
+                            <table class="table table-sm table-dark">
+                                <tr><th>Anomaly Score:</th><td>${alert.anomaly_score.toFixed(2)}</td></tr>
+                                <tr><th>Decision Score:</th><td>${alert.decision_score.toFixed(2)}</td></tr>
+                            </table>
+                            <h6 class="mt-3"><i class="fas fa-file me-2"></i>File</h6>
+                            <p class="small text-break">${alert.filename}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h6><i class="fas fa-exclamation-circle me-2"></i>Key Indicators</h6>
+                            <div class="row g-2">
+                                ${Object.entries(alert.key_indicators).map(([key, value]) => `
+                                    <div class="col-md-4">
+                                        <div class="card bg-secondary">
+                                            <div class="card-body p-2">
+                                                <small class="text-muted">${key.replace(/_/g, ' ').toUpperCase()}</small>
+                                                <h5 class="mb-0">${value}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <h6><i class="fas fa-lightbulb me-2"></i>Recommendations</h6>
+                            <ul class="list-group">
+                                ${alert.recommendations.map(rec => `
+                                    <li class="list-group-item bg-dark text-light border-secondary">
+                                        <i class="fas fa-check-circle text-success me-2"></i>${rec}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                
+                const modal = new bootstrap.Modal(document.getElementById('alertModal'));
+                modal.show();
+            })
+            .catch(error => {
+                console.error('Error fetching alert details:', error);
+                alert('Error loading alert details');
+            });
+    }
+    
+    // Auto-refresh every 30 seconds
+    setInterval(function() {
+        location.reload();
+    }, 30000);
+</script>
+{% endblock %}
+

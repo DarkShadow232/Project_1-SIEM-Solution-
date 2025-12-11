@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block title %}Search - SIEM Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2 class="mb-0">
+            <i class="fas fa-search me-2"></i>Advanced Search
+        </h2>
+        <p class="text-muted">Search across alerts and outlier data</p>
+    </div>
+</div>
+
+<!-- Search Form -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-filter me-2"></i>Search Criteria
+            </div>
+            <div class="card-body">
+                <form action="/search" method="get" id="searchForm">
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label for="searchQuery" class="form-label">Search Query</label>
+                            <input type="text" class="form-control form-control-lg" 
+                                   id="searchQuery" name="q" 
+                                   placeholder="Enter filename, alert ID, or keyword..." 
+                                   value="{{ query or '' }}" required>
+                            <small class="text-muted">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Tip: Use keywords like filename, alert ID, or specific metrics
+                            </small>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="searchType" class="form-label">Search In</label>
+                            <select class="form-select form-select-lg" id="searchType" name="type">
+                                <option value="all" {% if search_type == 'all' %}selected{% endif %}>All Data</option>
+                                <option value="alerts" {% if search_type == 'alerts' %}selected{% endif %}>Alerts Only</option>
+                                <option value="outliers" {% if search_type == 'outliers' %}selected{% endif %}>Outliers Only</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-search me-2"></i>Search
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-lg" onclick="clearSearch()">
+                                <i class="fas fa-times me-2"></i>Clear
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if results %}
+<!-- Search Results -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="alert alert-info">
+            <i class="fas fa-check-circle me-2"></i>
+            Found <strong>{{ results.alerts|length + results.outliers|length }}</strong> results for 
+            "<strong>{{ query }}</strong>"
+            {% if search_type != 'all' %}in {{ search_type }}{% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Alerts Results -->
+{% if results.alerts %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Alerts ({{ results.alerts|length }} found)
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Alert ID</th>
+                                <th>Timestamp</th>
+                                <th>Severity</th>
+                                <th>Filename</th>
+                                <th>Anomaly Score</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for alert in results.alerts %}
+                            <tr>
+                                <td>{{ alert.alert_id }}</td>
+                                <td>{{ alert.timestamp.split('T')[0] }}<br>
+                                    <small class="text-muted">{{ alert.timestamp.split('T')[1][:8] }}</small>
+                                </td>
+                                <td>
+                                    <span class="badge severity-{{ alert.severity }}">
+                                        {{ alert.severity|upper }}
+                                    </span>
+                                </td>
+                                <td class="text-break">{{ alert.filename }}</td>
+                                <td>
+                                    <span class="badge bg-info">{{ "%.2f"|format(alert.anomaly_score) }}</span>
+                                </td>
+                                <td>
+                                    <a href="/alerts?search={{ alert.alert_id }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye me-1"></i>View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Outliers Results -->
+{% if results.outliers %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-chart-scatter me-2"></i>
+                Outliers ({{ results.outliers|length }} found)
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Filename</th>
+                                <th>Detection Methods</th>
+                                <th>Malware Inj.</th>
+                                <th>Processes</th>
+                                <th>Handles</th>
+                                <th>DLLs</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for outlier in results.outliers %}
+                            <tr>
+                                <td class="text-break">{{ outlier.Filename }}</td>
+                                <td>
+                                    {% if outlier.IQR_Outlier == 1 %}
+                                    <span class="badge bg-primary">IQR</span>
+                                    {% endif %}
+                                    {% if outlier.ZScore_Outlier == 1 %}
+                                    <span class="badge bg-warning">Z-Score</span>
+                                    {% endif %}
+                                    {% if outlier.IsolationForest_Outlier == 1 %}
+                                    <span class="badge bg-success">Iso Forest</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ outlier['malfind.ninjections'] }}</td>
+                                <td>{{ outlier['pslist.nproc'] }}</td>
+                                <td>{{ outlier['handles.nhandles'] }}</td>
+                                <td>{{ outlier['dlllist.ndlls'] }}</td>
+                                <td>
+                                    <a href="/outliers" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-chart-scatter me-1"></i>View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endif %}
+
+<!-- No Results -->
+{% if results and results.alerts|length == 0 and results.outliers|length == 0 %}
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            No results found for "<strong>{{ query }}</strong>".
+            Try different keywords or search terms.
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Search Tips -->
+{% if not results %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-lightbulb me-2"></i>Search Tips
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li>Search by <strong>filename</strong>: Enter part of or the full filename</li>
+                    <li>Search by <strong>alert ID</strong>: Enter the alert ID (e.g., ALERT-20251109205753-37)</li>
+                    <li>Search by <strong>keywords</strong>: malware, injection, high, medium, etc.</li>
+                    <li>Use the <strong>Search In</strong> dropdown to filter by data type</li>
+                    <li>Partial matches are supported for flexible searching</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    function clearSearch() {
+        document.getElementById('searchQuery').value = '';
+        document.getElementById('searchType').value = 'all';
+    }
+    
+    // Focus search input on load
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('searchQuery').focus();
+    });
+    
+    // Keyboard shortcut (Ctrl+K) to focus search
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            document.getElementById('searchQuery').focus();
+        }
+    });
+</script>
+{% endblock %}
+

@@ -1,0 +1,8 @@
+{
+  "Total_Samples": 850,
+  "IQR_Outliers": 392,
+  "ZScore_Outliers": 138,
+  "Any_Method_Outliers": 395,
+  "Outlier_Percentage": 46.470588235294116,
+  "IsolationForest_Outliers": 85
+}

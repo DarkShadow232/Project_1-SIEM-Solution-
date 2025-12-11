@@ -1,0 +1,1819 @@
+[
+  {
+    "alert_id": "ALERT-20251110230417-37",
+    "timestamp": "2025-11-10T23:04:17.788094",
+    "severity": "high",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 6.892216101636803,
+    "decision_score": -6.892216101636803,
+    "filename": "Spyware-TIBS-3a9761469b4af524762205221f937a180f559960410e9f87fbfe6f68d9eb2adf-2.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5394,
+      "num_dlls": 936,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-60",
+    "timestamp": "2025-11-10T23:04:17.789063",
+    "severity": "medium",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 2.182852707223189,
+    "decision_score": -2.182852707223189,
+    "filename": "Spyware-TIBS-3a9761469b4af524762205221f937a180f559960410e9f87fbfe6f68d9eb2adf-6.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5406,
+      "num_dlls": 993,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-64",
+    "timestamp": "2025-11-10T23:04:17.789829",
+    "severity": "high",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 6.916618756439688,
+    "decision_score": -6.916618756439688,
+    "filename": "Spyware-TIBS-3a9761469b4af524762205221f937a180f559960410e9f87fbfe6f68d9eb2adf-1.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5364,
+      "num_dlls": 934,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-95",
+    "timestamp": "2025-11-10T23:04:17.790572",
+    "severity": "high",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 6.858354500225756,
+    "decision_score": -6.858354500225756,
+    "filename": "Spyware-TIBS-1f1f72fe1f6c70cc59e2a4c2b95df0da7c4eb26381c2eed8445227f40db3f7a1-1.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5384,
+      "num_dlls": 934,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-158",
+    "timestamp": "2025-11-10T23:04:17.791312",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.14277484695611342,
+    "decision_score": -0.14277484695611342,
+    "filename": "Spyware-TIBS-40a45471e1b7f0ad943f0e2f736afb24b7048c09caf44befbfaf8c10c89aca25-3.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5320,
+      "num_dlls": 926,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-165",
+    "timestamp": "2025-11-10T23:04:17.792037",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.00023757124700907184,
+    "decision_score": -0.00023757124700907184,
+    "filename": "Spyware-TIBS-8b374a972ae3f2aa202e216b2ebb61cd7668d1e3803cfcc9bdeb9f7e1a0e70c2-4.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5118,
+      "num_dlls": 936,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-190",
+    "timestamp": "2025-11-10T23:04:17.792768",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.6555915644893258,
+    "decision_score": -0.6555915644893258,
+    "filename": "Spyware-TIBS-49bb6d6117975b63789c7307ca5c4b166239b7d2c342f80a2487dfe99ef438f2-10.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 29,
+      "num_handles": 7610,
+      "num_dlls": 1327,
+      "hidden_processes": 4
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-202",
+    "timestamp": "2025-11-10T23:04:17.793491",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.14622851969847517,
+    "decision_score": -0.14622851969847517,
+    "filename": "Spyware-TIBS-9aa88b8359d2090f6588d882078813d7c548776d7403627c25f1091a0564fce6-8.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 27,
+      "num_handles": 7215,
+      "num_dlls": 1209,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-210",
+    "timestamp": "2025-11-10T23:04:17.794210",
+    "severity": "medium",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 3.516827193837911,
+    "decision_score": -3.516827193837911,
+    "filename": "Spyware-TIBS-8b374a972ae3f2aa202e216b2ebb61cd7668d1e3803cfcc9bdeb9f7e1a0e70c2-6.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5212,
+      "num_dlls": 952,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-211",
+    "timestamp": "2025-11-10T23:04:17.794922",
+    "severity": "medium",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 2.1976515827864684,
+    "decision_score": -2.1976515827864684,
+    "filename": "Spyware-TIBS-40a45471e1b7f0ad943f0e2f736afb24b7048c09caf44befbfaf8c10c89aca25-1.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 4982,
+      "num_dlls": 898,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-223",
+    "timestamp": "2025-11-10T23:04:17.795641",
+    "severity": "medium",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 3.724151023158111,
+    "decision_score": -3.724151023158111,
+    "filename": "Spyware-TIBS-8b374a972ae3f2aa202e216b2ebb61cd7668d1e3803cfcc9bdeb9f7e1a0e70c2-1.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5350,
+      "num_dlls": 934,
+      "hidden_processes": 4
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-236",
+    "timestamp": "2025-11-10T23:04:17.796360",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.025698995137455327,
+    "decision_score": -0.025698995137455327,
+    "filename": "Spyware-TIBS-7c5d590afd39575ec7211e69d22acd56638f9356d955ac4ebca7bc93ad4f439b-6.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5170,
+      "num_dlls": 939,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-241",
+    "timestamp": "2025-11-10T23:04:17.797073",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 1.7950458277197718,
+    "decision_score": -1.7950458277197718,
+    "filename": "Spyware-TIBS-8b374a972ae3f2aa202e216b2ebb61cd7668d1e3803cfcc9bdeb9f7e1a0e70c2-2.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5332,
+      "num_dlls": 934,
+      "hidden_processes": 3
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-269",
+    "timestamp": "2025-11-10T23:04:17.797819",
+    "severity": "high",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 6.8578074398057005,
+    "decision_score": -6.8578074398057005,
+    "filename": "Spyware-TIBS-7ee08dbd8e61fb131cc2258ad23f01c675265c04b502aa8676da524f962a98ab-1.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5375,
+      "num_dlls": 934,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-315",
+    "timestamp": "2025-11-10T23:04:17.798534",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.06732444356019052,
+    "decision_score": -0.06732444356019052,
+    "filename": "Spyware-TIBS-9aa88b8359d2090f6588d882078813d7c548776d7403627c25f1091a0564fce6-9.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 27,
+      "num_handles": 7145,
+      "num_dlls": 1209,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-324",
+    "timestamp": "2025-11-10T23:04:17.799238",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.1230670889951817,
+    "decision_score": -0.1230670889951817,
+    "filename": "Spyware-TIBS-40a45471e1b7f0ad943f0e2f736afb24b7048c09caf44befbfaf8c10c89aca25-8.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 27,
+      "num_handles": 7229,
+      "num_dlls": 1204,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-328",
+    "timestamp": "2025-11-10T23:04:17.799947",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.020705397382197788,
+    "decision_score": -0.020705397382197788,
+    "filename": "Spyware-TIBS-7c5d590afd39575ec7211e69d22acd56638f9356d955ac4ebca7bc93ad4f439b-9.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 28,
+      "num_handles": 7505,
+      "num_dlls": 1276,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-329",
+    "timestamp": "2025-11-10T23:04:17.800688",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.38446397298086765,
+    "decision_score": -0.38446397298086765,
+    "filename": "Spyware-TIBS-9aa88b8359d2090f6588d882078813d7c548776d7403627c25f1091a0564fce6-10.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 28,
+      "num_handles": 7490,
+      "num_dlls": 1276,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-330",
+    "timestamp": "2025-11-10T23:04:17.801403",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.24699469530608376,
+    "decision_score": -0.24699469530608376,
+    "filename": "Spyware-TIBS-7c5d590afd39575ec7211e69d22acd56638f9356d955ac4ebca7bc93ad4f439b-1.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5389,
+      "num_dlls": 934,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-368",
+    "timestamp": "2025-11-10T23:04:17.802108",
+    "severity": "medium",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 2.223288121981298,
+    "decision_score": -2.223288121981298,
+    "filename": "Spyware-TIBS-97a0246b1c3df21db4449c71eabd9e2e4c622adfc1c6d9a86e151c844c6f4c30-6.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5511,
+      "num_dlls": 1000,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-394",
+    "timestamp": "2025-11-10T23:04:17.802816",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.6181600793124993,
+    "decision_score": -0.6181600793124993,
+    "filename": "Spyware-TIBS-6c524355af15275aa5b7f957574769ce268cbe125214f26c32a1037bc831ee8d-10.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 29,
+      "num_handles": 7619,
+      "num_dlls": 1322,
+      "hidden_processes": 4
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-402",
+    "timestamp": "2025-11-10T23:04:17.803524",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.000410116322081322,
+    "decision_score": -0.000410116322081322,
+    "filename": "Spyware-TIBS-6ff85480282c694f5e64a1fce32938d3f71e0f2aa3e91e8bc139184713b33c56-2.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5411,
+      "num_dlls": 936,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-410",
+    "timestamp": "2025-11-10T23:04:17.804226",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.1846000407640318,
+    "decision_score": -0.1846000407640318,
+    "filename": "Spyware-TIBS-9aa88b8359d2090f6588d882078813d7c548776d7403627c25f1091a0564fce6-2.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5320,
+      "num_dlls": 926,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-436",
+    "timestamp": "2025-11-10T23:04:17.804931",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.07078581695100006,
+    "decision_score": -0.07078581695100006,
+    "filename": "Spyware-TIBS-40a45471e1b7f0ad943f0e2f736afb24b7048c09caf44befbfaf8c10c89aca25-9.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 27,
+      "num_handles": 7198,
+      "num_dlls": 1204,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-457",
+    "timestamp": "2025-11-10T23:04:17.805639",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.19363322773727631,
+    "decision_score": -0.19363322773727631,
+    "filename": "Spyware-TIBS-9aa88b8359d2090f6588d882078813d7c548776d7403627c25f1091a0564fce6-1.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5319,
+      "num_dlls": 925,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-463",
+    "timestamp": "2025-11-10T23:04:17.806341",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.2770028890626044,
+    "decision_score": -0.2770028890626044,
+    "filename": "Spyware-TIBS-8b374a972ae3f2aa202e216b2ebb61cd7668d1e3803cfcc9bdeb9f7e1a0e70c2-5.raw",
+    "key_indicators": {
+      "malware_injections": 1,
+      "num_processes": 22,
+      "num_handles": 5040,
+      "num_dlls": 936,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-488",
+    "timestamp": "2025-11-10T23:04:17.807043",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.6402385432216811,
+    "decision_score": -0.6402385432216811,
+    "filename": "Spyware-TIBS-6ff85480282c694f5e64a1fce32938d3f71e0f2aa3e91e8bc139184713b33c56-10.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 29,
+      "num_handles": 7606,
+      "num_dlls": 1327,
+      "hidden_processes": 4
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-493",
+    "timestamp": "2025-11-10T23:04:17.807747",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.0431809704274464,
+    "decision_score": -0.0431809704274464,
+    "filename": "Spyware-TIBS-7c5d590afd39575ec7211e69d22acd56638f9356d955ac4ebca7bc93ad4f439b-10.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 29,
+      "num_handles": 7576,
+      "num_dlls": 1322,
+      "hidden_processes": 3
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-502",
+    "timestamp": "2025-11-10T23:04:17.808447",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.8210928701764715,
+    "decision_score": -0.8210928701764715,
+    "filename": "Spyware-TIBS-8217ae4fbd1555e6e06a5d3f18231377941f07d100b5ad62a8b31b9f1b64703e-5.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 45,
+      "num_handles": 9151,
+      "num_dlls": 1763,
+      "hidden_processes": 4
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-507",
+    "timestamp": "2025-11-10T23:04:17.809153",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.3887839144941285,
+    "decision_score": -0.3887839144941285,
+    "filename": "Spyware-TIBS-979db6d35d22f609cbdd3515bea40d29c89bf89364999c4218ab5dfffd7fc11a-6.raw",
+    "key_indicators": {
+      "malware_injections": 62,
+      "num_processes": 37,
+      "num_handles": 7289,
+      "num_dlls": 1381,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-523",
+    "timestamp": "2025-11-10T23:04:17.809859",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.1469030664414106,
+    "decision_score": -0.1469030664414106,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-9.raw",
+    "key_indicators": {
+      "malware_injections": 90,
+      "num_processes": 42,
+      "num_handles": 8568,
+      "num_dlls": 1550,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-528",
+    "timestamp": "2025-11-10T23:04:17.810560",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.9888832334469484,
+    "decision_score": -0.9888832334469484,
+    "filename": "Spyware-TIBS-8217ae4fbd1555e6e06a5d3f18231377941f07d100b5ad62a8b31b9f1b64703e-2.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 43,
+      "num_handles": 9070,
+      "num_dlls": 1722,
+      "hidden_processes": 5
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-536",
+    "timestamp": "2025-11-10T23:04:17.811262",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.10743411633115052,
+    "decision_score": -0.10743411633115052,
+    "filename": "Spyware-TIBS-4754c35288a9488036c211c68f36f86496240000164edd36f9eaaeed12e65dbf-7.raw",
+    "key_indicators": {
+      "malware_injections": 62,
+      "num_processes": 37,
+      "num_handles": 7118,
+      "num_dlls": 1377,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-539",
+    "timestamp": "2025-11-10T23:04:17.811965",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.44504687984802516,
+    "decision_score": -0.44504687984802516,
+    "filename": "Spyware-TIBS-961bfaad26e065fccd479a8aea79ac6f02bfed983259420097133a86e0fc2d21-8.raw",
+    "key_indicators": {
+      "malware_injections": 60,
+      "num_processes": 36,
+      "num_handles": 7182,
+      "num_dlls": 1355,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-543",
+    "timestamp": "2025-11-10T23:04:17.812689",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.00021952139325520648,
+    "decision_score": -0.00021952139325520648,
+    "filename": "Spyware-TIBS-5045036bec213df4c03e57feb5f3b97b6e676eb3a1ab220d1596ad71f3246baa-9.raw",
+    "key_indicators": {
+      "malware_injections": 4,
+      "num_processes": 40,
+      "num_handles": 8576,
+      "num_dlls": 1580,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-553",
+    "timestamp": "2025-11-10T23:04:17.813392",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.39909705470422097,
+    "decision_score": -0.39909705470422097,
+    "filename": "Spyware-TIBS-961bfaad26e065fccd479a8aea79ac6f02bfed983259420097133a86e0fc2d21-1.raw",
+    "key_indicators": {
+      "malware_injections": 47,
+      "num_processes": 37,
+      "num_handles": 6750,
+      "num_dlls": 1318,
+      "hidden_processes": 4
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-561",
+    "timestamp": "2025-11-10T23:04:17.814098",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.11978654103977782,
+    "decision_score": -0.11978654103977782,
+    "filename": "Spyware-TIBS-98f79b05b432de9dd246e9fec02ce0e37acbfbe0798d10c621c0b397e05ea470-1.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 32,
+      "num_handles": 6155,
+      "num_dlls": 1174,
+      "hidden_processes": 5
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-563",
+    "timestamp": "2025-11-10T23:04:17.814798",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 1.4561580178214637,
+    "decision_score": -1.4561580178214637,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-3.raw",
+    "key_indicators": {
+      "malware_injections": 79,
+      "num_processes": 50,
+      "num_handles": 9182,
+      "num_dlls": 1764,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-565",
+    "timestamp": "2025-11-10T23:04:17.815497",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.38031618640469667,
+    "decision_score": -0.38031618640469667,
+    "filename": "Spyware-TIBS-306cacba59ca07650c4ff93e770a530fee5ab0bd21fbbdacc6450bf5f8227b66-10.raw",
+    "key_indicators": {
+      "malware_injections": 63,
+      "num_processes": 43,
+      "num_handles": 9179,
+      "num_dlls": 1686,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-567",
+    "timestamp": "2025-11-10T23:04:17.816209",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.17241969802649137,
+    "decision_score": -0.17241969802649137,
+    "filename": "Spyware-TIBS-954f736dfd60b84b6e7b02b873945bb19058beb1f7be314716f5c924f632f598-1.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 32,
+      "num_handles": 6157,
+      "num_dlls": 1172,
+      "hidden_processes": 5
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-569",
+    "timestamp": "2025-11-10T23:04:17.816907",
+    "severity": "high",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 5.073560397158576,
+    "decision_score": -5.073560397158576,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-2.raw",
+    "key_indicators": {
+      "malware_injections": 37,
+      "num_processes": 49,
+      "num_handles": 8763,
+      "num_dlls": 1661,
+      "hidden_processes": 5
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-573",
+    "timestamp": "2025-11-10T23:04:17.817615",
+    "severity": "medium",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 4.574795807678966,
+    "decision_score": -4.574795807678966,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-5.raw",
+    "key_indicators": {
+      "malware_injections": 89,
+      "num_processes": 52,
+      "num_handles": 9073,
+      "num_dlls": 1717,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-595",
+    "timestamp": "2025-11-10T23:04:17.818318",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.3797770814167567,
+    "decision_score": -0.3797770814167567,
+    "filename": "Spyware-TIBS-248a7274908dc58a27ad4f999f106628810a4d04b027244683886198ad927afd-4.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 37,
+      "num_handles": 6114,
+      "num_dlls": 1270,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-606",
+    "timestamp": "2025-11-10T23:04:17.819015",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.00039313384889183567,
+    "decision_score": -0.00039313384889183567,
+    "filename": "Spyware-TIBS-599e4bde3509a8bf8d535685bcf40f703d68c03b3bb6343accac3ae6dc696248-1.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 35,
+      "num_handles": 6475,
+      "num_dlls": 1264,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-614",
+    "timestamp": "2025-11-10T23:04:17.819723",
+    "severity": "high",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 9.305802514173621,
+    "decision_score": -9.305802514173621,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-6.raw",
+    "key_indicators": {
+      "malware_injections": 90,
+      "num_processes": 43,
+      "num_handles": 8731,
+      "num_dlls": 1589,
+      "hidden_processes": 10
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-621",
+    "timestamp": "2025-11-10T23:04:17.820425",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.29479722927752583,
+    "decision_score": -0.29479722927752583,
+    "filename": "Spyware-TIBS-2361f526473d9f47642b2c9504cf0e0ffa62f222eccbdf665035ad4658cfb915-1.raw",
+    "key_indicators": {
+      "malware_injections": 6,
+      "num_processes": 43,
+      "num_handles": 9062,
+      "num_dlls": 1688,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-622",
+    "timestamp": "2025-11-10T23:04:17.821123",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.2680484603177611,
+    "decision_score": -0.2680484603177611,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-7.raw",
+    "key_indicators": {
+      "malware_injections": 90,
+      "num_processes": 42,
+      "num_handles": 8578,
+      "num_dlls": 1550,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-623",
+    "timestamp": "2025-11-10T23:04:17.821823",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.05160850389912497,
+    "decision_score": -0.05160850389912497,
+    "filename": "Spyware-TIBS-0149e4302db69ee3430709369101d4e70f5d8bfce7c76555cb835f4862a03879-6.raw",
+    "key_indicators": {
+      "malware_injections": 60,
+      "num_processes": 36,
+      "num_handles": 7139,
+      "num_dlls": 1349,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-624",
+    "timestamp": "2025-11-10T23:04:17.822520",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 1.1237185737658937,
+    "decision_score": -1.1237185737658937,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-10.raw",
+    "key_indicators": {
+      "malware_injections": 89,
+      "num_processes": 40,
+      "num_handles": 8127,
+      "num_dlls": 1482,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-625",
+    "timestamp": "2025-11-10T23:04:17.823217",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 1.073520835076982,
+    "decision_score": -1.073520835076982,
+    "filename": "Spyware-TIBS-306cacba59ca07650c4ff93e770a530fee5ab0bd21fbbdacc6450bf5f8227b66-1.raw",
+    "key_indicators": {
+      "malware_injections": 55,
+      "num_processes": 37,
+      "num_handles": 6782,
+      "num_dlls": 1326,
+      "hidden_processes": 4
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-629",
+    "timestamp": "2025-11-10T23:04:17.823923",
+    "severity": "high",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 7.575973867457385,
+    "decision_score": -7.575973867457385,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-1.raw",
+    "key_indicators": {
+      "malware_injections": 9,
+      "num_processes": 56,
+      "num_handles": 8807,
+      "num_dlls": 1680,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-642",
+    "timestamp": "2025-11-10T23:04:17.824619",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.7176599603337301,
+    "decision_score": -0.7176599603337301,
+    "filename": "Spyware-TIBS-8217ae4fbd1555e6e06a5d3f18231377941f07d100b5ad62a8b31b9f1b64703e-6.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 43,
+      "num_handles": 8860,
+      "num_dlls": 1676,
+      "hidden_processes": 5
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-648",
+    "timestamp": "2025-11-10T23:04:17.825319",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 1.0717884736459702,
+    "decision_score": -1.0717884736459702,
+    "filename": "Spyware-TIBS-5045036bec213df4c03e57feb5f3b97b6e676eb3a1ab220d1596ad71f3246baa-10.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 38,
+      "num_handles": 8144,
+      "num_dlls": 1512,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-649",
+    "timestamp": "2025-11-10T23:04:17.826020",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.8864693408450943,
+    "decision_score": -0.8864693408450943,
+    "filename": "Spyware-TIBS-248a7274908dc58a27ad4f999f106628810a4d04b027244683886198ad927afd-6.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 37,
+      "num_handles": 6349,
+      "num_dlls": 1308,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-651",
+    "timestamp": "2025-11-10T23:04:17.826742",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.45685948319006364,
+    "decision_score": -0.45685948319006364,
+    "filename": "Spyware-TIBS-4754c35288a9488036c211c68f36f86496240000164edd36f9eaaeed12e65dbf-6.raw",
+    "key_indicators": {
+      "malware_injections": 62,
+      "num_processes": 36,
+      "num_handles": 6863,
+      "num_dlls": 1347,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-654",
+    "timestamp": "2025-11-10T23:04:17.827442",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.012849561325184666,
+    "decision_score": -0.012849561325184666,
+    "filename": "Spyware-TIBS-570dbd214653ec1c9b7ff1f2c119060a7cacc28549706ece5f233ebdc05b1518-6.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 35,
+      "num_handles": 6511,
+      "num_dlls": 1287,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-657",
+    "timestamp": "2025-11-10T23:04:17.828143",
+    "severity": "medium",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 2.6964624895888685,
+    "decision_score": -2.6964624895888685,
+    "filename": "Spyware-TIBS-505c865b3cadf62b53d15f53d6d9a4293f7d7287fc88b54fa2b19974b3338a57-5.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 37,
+      "num_handles": 6747,
+      "num_dlls": 1364,
+      "hidden_processes": 7
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-658",
+    "timestamp": "2025-11-10T23:04:17.828843",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.062474075760455605,
+    "decision_score": -0.062474075760455605,
+    "filename": "Spyware-TIBS-5065428bc91f6a12f48944a8c7299d559faf3d53e2c7c47db05bb9103450ab8d-3.raw",
+    "key_indicators": {
+      "malware_injections": 62,
+      "num_processes": 46,
+      "num_handles": 9465,
+      "num_dlls": 1779,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-659",
+    "timestamp": "2025-11-10T23:04:17.829547",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 1.3765676390042358,
+    "decision_score": -1.3765676390042358,
+    "filename": "Spyware-TIBS-78791f14568516cded277d28fae715f599d5074532d9a5f41fd1f0a14d648db2-7.raw",
+    "key_indicators": {
+      "malware_injections": 63,
+      "num_processes": 42,
+      "num_handles": 8784,
+      "num_dlls": 1610,
+      "hidden_processes": 4
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-660",
+    "timestamp": "2025-11-10T23:04:17.830241",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.4465929746221988,
+    "decision_score": -0.4465929746221988,
+    "filename": "Spyware-TIBS-248a7274908dc58a27ad4f999f106628810a4d04b027244683886198ad927afd-5.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 37,
+      "num_handles": 6088,
+      "num_dlls": 1270,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-664",
+    "timestamp": "2025-11-10T23:04:17.830935",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 1.5893805484519063,
+    "decision_score": -1.5893805484519063,
+    "filename": "Spyware-TIBS-0149e4302db69ee3430709369101d4e70f5d8bfce7c76555cb835f4862a03879-1.raw",
+    "key_indicators": {
+      "malware_injections": 46,
+      "num_processes": 35,
+      "num_handles": 6519,
+      "num_dlls": 1256,
+      "hidden_processes": 5
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-671",
+    "timestamp": "2025-11-10T23:04:17.831641",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 6.341219203065407e-06,
+    "decision_score": -6.341219203065407e-06,
+    "filename": "Spyware-TIBS-574cbd37cab3adfdd1b55051c52471c180bc4b5e69e7e018d8f7039b644ed0fd-6.raw",
+    "key_indicators": {
+      "malware_injections": 60,
+      "num_processes": 34,
+      "num_handles": 6995,
+      "num_dlls": 1302,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-673",
+    "timestamp": "2025-11-10T23:04:17.832381",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.9715983675918007,
+    "decision_score": -0.9715983675918007,
+    "filename": "Spyware-TIBS-7651d72f90c1aaecc18a032dd6140ec4def8a836e7efcfc83b9a3389345dcb10-7.raw",
+    "key_indicators": {
+      "malware_injections": 4,
+      "num_processes": 40,
+      "num_handles": 8151,
+      "num_dlls": 1505,
+      "hidden_processes": 6
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-678",
+    "timestamp": "2025-11-10T23:04:17.833076",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.7273352728982712,
+    "decision_score": -0.7273352728982712,
+    "filename": "Spyware-TIBS-505c865b3cadf62b53d15f53d6d9a4293f7d7287fc88b54fa2b19974b3338a57-4.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 37,
+      "num_handles": 6634,
+      "num_dlls": 1370,
+      "hidden_processes": 6
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-684",
+    "timestamp": "2025-11-10T23:04:17.833775",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.0002170974515927071,
+    "decision_score": -0.0002170974515927071,
+    "filename": "Spyware-TIBS-5045036bec213df4c03e57feb5f3b97b6e676eb3a1ab220d1596ad71f3246baa-4.raw",
+    "key_indicators": {
+      "malware_injections": 4,
+      "num_processes": 44,
+      "num_handles": 9231,
+      "num_dlls": 1741,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-691",
+    "timestamp": "2025-11-10T23:04:17.834467",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.22109303096807942,
+    "decision_score": -0.22109303096807942,
+    "filename": "Spyware-TIBS-3031e4fc4cab067dba86e6f667dfaf323a996c8a112776899d692d8af34b21b2-7.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 37,
+      "num_handles": 7992,
+      "num_dlls": 1451,
+      "hidden_processes": 6
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-696",
+    "timestamp": "2025-11-10T23:04:17.835162",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.783117922921333,
+    "decision_score": -0.783117922921333,
+    "filename": "Spyware-TIBS-599e4bde3509a8bf8d535685bcf40f703d68c03b3bb6343accac3ae6dc696248-7.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 35,
+      "num_handles": 6610,
+      "num_dlls": 1309,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-699",
+    "timestamp": "2025-11-10T23:04:17.835862",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.023011712892797576,
+    "decision_score": -0.023011712892797576,
+    "filename": "Spyware-TIBS-961bfaad26e065fccd479a8aea79ac6f02bfed983259420097133a86e0fc2d21-6.raw",
+    "key_indicators": {
+      "malware_injections": 60,
+      "num_processes": 34,
+      "num_handles": 6832,
+      "num_dlls": 1290,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-727",
+    "timestamp": "2025-11-10T23:04:17.836554",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.0816933397305526,
+    "decision_score": -0.0816933397305526,
+    "filename": "Spyware-TIBS-0149e4302db69ee3430709369101d4e70f5d8bfce7c76555cb835f4862a03879-8.raw",
+    "key_indicators": {
+      "malware_injections": 60,
+      "num_processes": 37,
+      "num_handles": 7956,
+      "num_dlls": 1431,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-728",
+    "timestamp": "2025-11-10T23:04:17.837242",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.11558071847909446,
+    "decision_score": -0.11558071847909446,
+    "filename": "Spyware-TIBS-2361f526473d9f47642b2c9504cf0e0ffa62f222eccbdf665035ad4658cfb915-3.raw",
+    "key_indicators": {
+      "malware_injections": 6,
+      "num_processes": 45,
+      "num_handles": 9109,
+      "num_dlls": 1740,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-734",
+    "timestamp": "2025-11-10T23:04:17.837939",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.5704799667390859,
+    "decision_score": -0.5704799667390859,
+    "filename": "Spyware-TIBS-570dbd214653ec1c9b7ff1f2c119060a7cacc28549706ece5f233ebdc05b1518-8.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 40,
+      "num_handles": 7293,
+      "num_dlls": 1391,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-739",
+    "timestamp": "2025-11-10T23:04:17.838635",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.06601043606932855,
+    "decision_score": -0.06601043606932855,
+    "filename": "Spyware-TIBS-78791f14568516cded277d28fae715f599d5074532d9a5f41fd1f0a14d648db2-3.raw",
+    "key_indicators": {
+      "malware_injections": 62,
+      "num_processes": 46,
+      "num_handles": 9465,
+      "num_dlls": 1779,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-754",
+    "timestamp": "2025-11-10T23:04:17.839334",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.30875064545106135,
+    "decision_score": -0.30875064545106135,
+    "filename": "Spyware-TIBS-35687c2a333d215c400adb744ca367dae9ce2b5fcc705ac639b11bc319d50475-1.raw",
+    "key_indicators": {
+      "malware_injections": 5,
+      "num_processes": 47,
+      "num_handles": 9595,
+      "num_dlls": 1823,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-771",
+    "timestamp": "2025-11-10T23:04:17.840029",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.451451758049366,
+    "decision_score": -0.451451758049366,
+    "filename": "Spyware-TIBS-961bfaad26e065fccd479a8aea79ac6f02bfed983259420097133a86e0fc2d21-4.raw",
+    "key_indicators": {
+      "malware_injections": 60,
+      "num_processes": 35,
+      "num_handles": 6645,
+      "num_dlls": 1278,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-776",
+    "timestamp": "2025-11-10T23:04:17.840722",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.5728090323410928,
+    "decision_score": -0.5728090323410928,
+    "filename": "Spyware-TIBS-599e4bde3509a8bf8d535685bcf40f703d68c03b3bb6343accac3ae6dc696248-6.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 34,
+      "num_handles": 6353,
+      "num_dlls": 1277,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-780",
+    "timestamp": "2025-11-10T23:04:17.841417",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.0003896463863739541,
+    "decision_score": -0.0003896463863739541,
+    "filename": "Spyware-TIBS-248a7274908dc58a27ad4f999f106628810a4d04b027244683886198ad927afd-10.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 42,
+      "num_handles": 8228,
+      "num_dlls": 1560,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-783",
+    "timestamp": "2025-11-10T23:04:17.842143",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.5516134582011887,
+    "decision_score": -0.5516134582011887,
+    "filename": "Spyware-TIBS-1981a8ad7e1e19ce11df0ba175d0e34fd8f1b1511b571dc00e362a078867d775-3.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 37,
+      "num_handles": 6693,
+      "num_dlls": 1368,
+      "hidden_processes": 6
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-794",
+    "timestamp": "2025-11-10T23:04:17.842840",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 1.7897554198356946,
+    "decision_score": -1.7897554198356946,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-4.raw",
+    "key_indicators": {
+      "malware_injections": 81,
+      "num_processes": 50,
+      "num_handles": 9233,
+      "num_dlls": 1750,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-804",
+    "timestamp": "2025-11-10T23:04:17.843536",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.15257108436343714,
+    "decision_score": -0.15257108436343714,
+    "filename": "Spyware-TIBS-2361f526473d9f47642b2c9504cf0e0ffa62f222eccbdf665035ad4658cfb915-2.raw",
+    "key_indicators": {
+      "malware_injections": 6,
+      "num_processes": 43,
+      "num_handles": 8947,
+      "num_dlls": 1677,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-810",
+    "timestamp": "2025-11-10T23:04:17.844230",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.9202928130885049,
+    "decision_score": -0.9202928130885049,
+    "filename": "Spyware-TIBS-1981a8ad7e1e19ce11df0ba175d0e34fd8f1b1511b571dc00e362a078867d775-7.raw",
+    "key_indicators": {
+      "malware_injections": 2,
+      "num_processes": 36,
+      "num_handles": 6980,
+      "num_dlls": 1363,
+      "hidden_processes": 2
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-824",
+    "timestamp": "2025-11-10T23:04:17.844934",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.00019209656531238295,
+    "decision_score": -0.00019209656531238295,
+    "filename": "Spyware-TIBS-599e4bde3509a8bf8d535685bcf40f703d68c03b3bb6343accac3ae6dc696248-5.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 35,
+      "num_handles": 6135,
+      "num_dlls": 1266,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-825",
+    "timestamp": "2025-11-10T23:04:17.845633",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.006587123351838642,
+    "decision_score": -0.006587123351838642,
+    "filename": "Spyware-TIBS-5045036bec213df4c03e57feb5f3b97b6e676eb3a1ab220d1596ad71f3246baa-5.raw",
+    "key_indicators": {
+      "malware_injections": 4,
+      "num_processes": 43,
+      "num_handles": 9017,
+      "num_dlls": 1692,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-826",
+    "timestamp": "2025-11-10T23:04:17.846327",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.2453445872361808,
+    "decision_score": -0.2453445872361808,
+    "filename": "Spyware-TIBS-3031e4fc4cab067dba86e6f667dfaf323a996c8a112776899d692d8af34b21b2-6.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 38,
+      "num_handles": 8130,
+      "num_dlls": 1490,
+      "hidden_processes": 6
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-833",
+    "timestamp": "2025-11-10T23:04:17.847025",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.0004363222683103629,
+    "decision_score": -0.0004363222683103629,
+    "filename": "Spyware-TIBS-599e4bde3509a8bf8d535685bcf40f703d68c03b3bb6343accac3ae6dc696248-8.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 37,
+      "num_handles": 7011,
+      "num_dlls": 1390,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-838",
+    "timestamp": "2025-11-10T23:04:17.847728",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.2602204593941355,
+    "decision_score": -0.2602204593941355,
+    "filename": "Spyware-TIBS-3760770f4e0ecfe15d832609a805cbe1f8f32ca7e011fd5c6a0ad98750afe2e8-8.raw",
+    "key_indicators": {
+      "malware_injections": 90,
+      "num_processes": 42,
+      "num_handles": 8559,
+      "num_dlls": 1550,
+      "hidden_processes": 1
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-839",
+    "timestamp": "2025-11-10T23:04:17.848470",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.3016670843127027,
+    "decision_score": -0.3016670843127027,
+    "filename": "Spyware-TIBS-8217ae4fbd1555e6e06a5d3f18231377941f07d100b5ad62a8b31b9f1b64703e-4.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 45,
+      "num_handles": 9171,
+      "num_dlls": 1763,
+      "hidden_processes": 3
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks",
+      "Hidden process detected - investigate rootkit activity",
+      "Unusually high number of handles - possible resource exhaustion attack",
+      "High DLL count - check for DLL hijacking or injection"
+    ]
+  },
+  {
+    "alert_id": "ALERT-20251110230417-843",
+    "timestamp": "2025-11-10T23:04:17.849171",
+    "severity": "low",
+    "status": "new",
+    "source": "One-Class SVM Anomaly Detection",
+    "anomaly_score": 0.04150218187802679,
+    "decision_score": -0.04150218187802679,
+    "filename": "Spyware-TIBS-8217ae4fbd1555e6e06a5d3f18231377941f07d100b5ad62a8b31b9f1b64703e-8.raw",
+    "key_indicators": {
+      "malware_injections": 3,
+      "num_processes": 42,
+      "num_handles": 8795,
+      "num_dlls": 1647,
+      "hidden_processes": 0
+    },
+    "recommendations": [
+      "Investigate malware injection - check for code injection attacks"
+    ]
+  }
+]

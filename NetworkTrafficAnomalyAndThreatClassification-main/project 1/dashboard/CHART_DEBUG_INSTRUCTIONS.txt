@@ -1,0 +1,71 @@
+===============================================================================
+CHART DEBUGGING - FOLLOW THESE STEPS
+===============================================================================
+
+The dashboard is now running with debug mode enabled!
+
+STEP 1: REFRESH YOUR BROWSER
+-----------------------------
+Press Ctrl+F5 (hard refresh) to reload with the new fixes
+
+STEP 2: CHECK FOR ALERT POPUP
+------------------------------
+If charts don't load, you'll see a popup alert with the error message.
+Click OK and proceed to Step 3.
+
+STEP 3: OPEN BROWSER CONSOLE  
+-----------------------------
+Press F12 to open Developer Tools
+Click the "Console" tab
+Look for messages that say:
+
+  ✓ "Loading dashboard data..."
+  ✓ "Stats data: {object}"
+  ✓ "Plotly.js loaded successfully"
+  ✓ "Creating timeline chart..."
+  ✓ "All charts created successfully!"
+
+STEP 4: CHECK FOR ERRORS
+-------------------------
+If you see RED error messages in console, take note of them:
+
+Common errors and what they mean:
+- "Plotly is not defined" = CDN not loading (check internet)
+- "Cannot read property 'hours' of undefined" = Data structure issue
+- "statsData is null" = Data not passed from Flask
+
+STEP 5: TEST PAGES
+------------------
+Try these pages to narrow down the issue:
+
+1. Test page: http://127.0.0.1:5000/test-charts
+   - Should show 3 colorful charts
+   - If this works = Plotly is fine, data issue
+   - If this fails = Plotly not loading
+
+2. Overview: http://127.0.0.1:5000/
+   - Check console for errors
+   - Note which chart fails
+
+3. Outliers: http://127.0.0.1:5000/outliers
+   - Check console for errors
+
+WHAT TO SHARE WITH ME:
+----------------------
+If charts still don't work, share:
+
+1. Screenshot of browser console (F12 → Console tab)
+2. Any popup alert messages
+3. Which browser you're using
+4. Does the test page work? (http://127.0.0.1:5000/test-charts)
+
+QUICK FIXES TO TRY:
+-------------------
+□ Hard refresh (Ctrl+F5)
+□ Try different browser (Chrome/Firefox)
+□ Check internet connection
+□ Clear browser cache
+□ Restart dashboard server
+
+===============================================================================
+

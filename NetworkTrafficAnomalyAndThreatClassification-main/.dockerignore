@@ -1,0 +1,92 @@
+# =============================================================================
+# Docker Ignore File
+# =============================================================================
+
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.docker/
+
+# Documentation (keep README but ignore others)
+*.md
+!README.md
+!QUICK_START.md
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Generated reports (these will be generated in container)
+Dataset_Comparison_Report.*
+generate_comparison_*.py
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Local configuration
+.env
+.env.local
+*.local
+
+# Notebooks (optional - uncomment if you don't need them in container)
+# Notebooks/
+
+# Batch files (Windows specific)
+*.bat
+*.cmd
+*.sh
+
